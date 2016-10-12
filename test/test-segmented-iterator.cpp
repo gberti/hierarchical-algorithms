@@ -30,11 +30,6 @@ int main() {
 
   cout << "Hierarchical:\n";
   print_seg(b,e);
-  int i;
-  i = std::accumulate(b,e,0);
-  cout << "sum (f) = " << i << "\n";
-  i = accumulate_h(b,e,int(0),std::plus<int>());
-  cout << "sum (h) = " << i << "\n";
   
   {
     segit b(vv.begin(),   vv.end(), vv.begin()->begin());
@@ -51,16 +46,6 @@ int main() {
     print(b,b);
     print(e,e);
 
-    cout << "Sum:\n";
-    cout << "[b,e): "
-	 << " (f): " << std::accumulate(b,e,int(0))
-	 << " (s): " << accumulate_h(b,e,int(0),std::plus<int>()) << "\n";
-    cout << "[b,b): "
-	 << " (f): " << std::accumulate(b,b,int(0))
-	 << " (s): " << accumulate_h(b,b,int(0),std::plus<int>()) << "\n";
-    cout << "[e,e): "
-	 << " (f): " << std::accumulate(e,e,int(0))
-	 << " (s): " << accumulate_h(e,e,int(0),std::plus<int>()) << "\n";
   }
   
   {

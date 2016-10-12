@@ -13,7 +13,7 @@ Res nested_reduction(Algo f, Res init, It b, It e, Other... other);
 template<typename Algo, typename Res, typename It, typename ... Other>
 Res nested_reduction(false_type, Algo f, Res init, It b, It e, Other... other)
 {
-  std::cout << "nested reduction flat.\n";
+  //std::cout << "nested reduction flat.\n";
   return f(init,b,e, other...);
 }
 
@@ -21,7 +21,7 @@ Res nested_reduction(false_type, Algo f, Res init, It b, It e, Other... other)
 template<typename Algo, typename Res, typename It, typename ... Other>
 Res nested_reduction(true_type,  Algo f, Res init, It b, It e, Other... other)
 {
-  std::cout << "nested reduction hier.\n";
+  //std::cout << "nested reduction hier.\n";
   using std::begin;
   using std::end;
   typedef typename It::segment_iterator segit;
@@ -56,7 +56,7 @@ template<typename Algo, typename Res, typename It, typename ... Other>
 Res nested_reduction(Algo f, Res init, It b, It e, Other... other)
 {
   
-  std::cout << "nested reduction branch\n";
+  //std::cout << "nested reduction branch\n";
   return nested_reduction(typename is_segmented<It>::res(),
 			  f, init, b,e, other...);
 } 
