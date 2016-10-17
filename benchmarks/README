@@ -1,0 +1,20 @@
+
+The file bench-accumulate.cpp compare different version of accumulate on different type of structures.
+
+1. Operators: Addion and multiplication (the latter being more costly and thus the arithmetic density is somewhat increased)
+2. Sequences: 
+  Flat vectors, 
+  vectors of vectors, 
+  deques, flat but "chunked" vectors (access with a segmented iterator on top of a logical hierarchical structure)
+3. Flat and hierarchical (where applicable) versions of accumulate
+
+The level of vectorisation can be controled by compiling with VEC=sse or VEC=avx: e.g.
+
+make all VEC=sse
+
+In order to avoid that cache effects hide performance differences 
+(i.e. that computing time is dominated by data transfer), 
+work on a limited set of data is repeated by performing the same operation 
+on the sequences in multiple times.
+
+
