@@ -40,39 +40,6 @@ struct progress_observer
 };
 
 
-/*! Iterator over the chunks of a sequence
-
- */
-/*
-template<class FlatIt>
-class chunk_iterator {
-  
-  typedef FlatIt flat_iterator;
-  typedef range<flat_iterator> value_type;
-
-  flat_iterator b,e,e_sequence;
-  int chunk_size;
-public:
-  
-
-  value_type operator*() const
-  { return valuetype(b,e); }
-
-  self& operator++() {
-    if(e != e_sequence) {
-      b += cs;
-      e = (e+cs <= e_sequence ? e+cs : e_sequence);
-    }
-    else {
-      b = e_sequence;
-    }
-    return *this;
-  }
-
-  
-};
-
-*/
 
 /*! chunked_iterator divides a sequence into equal-size chunks 
     
