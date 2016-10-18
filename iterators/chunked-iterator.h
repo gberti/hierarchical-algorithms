@@ -81,6 +81,7 @@ public:
     INCOMPLETE.
 
  */
+
 template<class FlatIt, class Observer>
 class chunked_iterator {
 public:
@@ -94,7 +95,8 @@ public:
   typedef progress_observer       observer_type;
   
 private:
-  int chunk_size;
+  typedef typename lt::difference_type difference_type; 
+  difference_type chunk_size;
   mutable observer_type obs;
   segment_iterator curr_seg,   end_seg;
   local_iterator   curr_loc, end_loc;
@@ -113,8 +115,7 @@ public:
 
   local_iterator begin_local(segment_iterator s) const { return s; }
   local_iterator end_local  (segment_iterator s) const {
-    int sz = std::min(chunk_size, std::distance(s,end_seg));
-    return s+sz;
+    return s + std::min(chunk_size, std::distance(s,end_seg));
   }
   segment_iterator next_segment(segment_iterator s) const
   {
