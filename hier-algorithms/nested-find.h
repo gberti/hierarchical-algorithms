@@ -3,6 +3,8 @@
 
 #include "hierarchical-iterator-traits.h"
 
+namespace hierarchical {
+
 template<class A, class It>
 struct result_type {
   typedef typename A::template result_type<It> type;
@@ -82,5 +84,6 @@ nested_find(Algo f, T init, It b, It e, Other... other)
 		     f, init, b,e, other...);
 } 
 
+}
 
 #endif

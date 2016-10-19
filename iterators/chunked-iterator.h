@@ -6,6 +6,7 @@
 #include <iterator>
 #include <iostream>
 
+
 /*! "Plug-in" for chunked_iterator
  */
 struct progress_observer
@@ -49,6 +50,8 @@ struct progress_observer
 
  */
 
+namespace hierarchical {
+  
 template<class FlatIt, class Observer>
 class chunked_iterator {
 public:
@@ -150,5 +153,6 @@ bool operator!=(chunked_iterator<FlatIt,Obs> const& lhs,
 template<class FlatIt, class Obs>
 struct is_segmented<chunked_iterator<FlatIt,Obs> > { typedef true_type res; };
 
+}
 
 #endif

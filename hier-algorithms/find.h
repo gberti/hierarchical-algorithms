@@ -4,6 +4,9 @@
 #include "nested-find.h"
 #include <algorithm>
 
+namespace hierarchical {
+
+  
 struct wrap_find {
 
   struct state_type {
@@ -60,7 +63,7 @@ struct wrap_find {
 };
 
 template<class It, class T>
-It find_h(It b, It e, T t)
+It find(It b, It e, T t)
 {
   //typedef wrap_find::find_result<It> init_type;
   typedef wrap_find::result_type<It> result_type;
@@ -72,6 +75,7 @@ It find_h(It b, It e, T t)
     return e;
 } 
 
+}
   
 
 #endif

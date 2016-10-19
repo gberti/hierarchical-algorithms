@@ -19,13 +19,13 @@ void print_seg(InputIterator b, InputIterator e);
 
 
 template<class InputIterator>
-void print_seg(InputIterator b, InputIterator e, false_type)
+void print_seg(InputIterator b, InputIterator e, hierarchical::false_type)
 {
   print(b,e);
 }
 
 template<class InputIterator>
-void print_seg(InputIterator b, InputIterator e, true_type)
+void print_seg(InputIterator b, InputIterator e, hierarchical::true_type)
 {
   typedef typename InputIterator::segment_iterator segit;
   typedef typename InputIterator::local_iterator   locit;
@@ -68,7 +68,7 @@ void print_seg(InputIterator b, InputIterator e, true_type)
 
 template<class InputIterator>
 void print_seg(InputIterator b, InputIterator e)
-{ print_seg(b,e, typename is_segmented<InputIterator>::res()); }
+{ print_seg(b,e, typename hierarchical::is_segmented<InputIterator>::res()); }
 
 
 

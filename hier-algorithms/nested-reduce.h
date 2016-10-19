@@ -3,6 +3,8 @@
 
 #include "hierarchical-iterator-traits.h"
 
+namespace hierarchical {
+  
 /*! Generic implementation of a generic reduction type algorithm
 
  */
@@ -61,5 +63,6 @@ Res nested_reduction(Algo f, Res init, It b, It e, Other... other)
 			  f, init, b,e, other...);
 } 
 
+}
 
 #endif

@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+namespace hierarchical {
+  
 /*! Linear iterator over a hierarchical sequence
 
 A hierarchical sequence is a (major) sequence [SB, SE) 
@@ -188,15 +190,21 @@ bool operator!=(segmented_iterator<S,L> const& lhs,
 		segmented_iterator<S,L> const& rhs)
 { return ! (lhs == rhs); }
 
+}
 
 
-template<class S, class L>
-struct is_segmented<segmented_iterator<S,L> > { typedef true_type res; };
+namespace hierarchical {
+
+  template<class S, class L>
+  struct is_segmented<segmented_iterator<S,L> > { typedef true_type res; };
+
+}
 
 namespace std {
 
+  // INCOMPLETE
   template<class S, class L>
-  struct iterator_traits<segmented_iterator<S,L> >
+  struct iterator_traits<hierarchical::segmented_iterator<S,L> >
   {
     typedef forward_iterator_tag iterator_category;
   };

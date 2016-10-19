@@ -5,6 +5,8 @@
 #include "nested-find.h"
 #include <algorithm>
 
+namespace hierarchical {
+  
 struct wrap_any_of {
   
   struct state_type {
@@ -51,13 +53,14 @@ struct wrap_any_of {
 };
 
 template<class It, class P>
-bool any_of_h(It b, It e, P t)
+bool any_of(It b, It e, P t)
 {
   typedef wrap_any_of::state_type init_type;
   return wrap_any_of::result(nested_find(wrap_any_of(),
 					 init_type(false), b,e, t));
 } 
 
-  
+
+}
 
 #endif

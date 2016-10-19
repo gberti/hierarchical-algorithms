@@ -14,7 +14,8 @@
 int main() {
   using namespace std;
 
-  typedef segmented_iterator<vector<vector<int> >::iterator, vector<int>::iterator> segit;
+  typedef hierarchical::segmented_iterator<vector<vector<int> >::iterator,
+					   vector<int>::iterator> segit;
 
   vector<vector<int> > vv(2);
   vv[0] = {1,2,3};
@@ -24,9 +25,9 @@ int main() {
 
 
   int i;
-  i = std::accumulate(b,e,0);
+  i = std::accumulate(b,e, int(0), std::plus<int>());
   cout << "sum (flat) = " << i << "\n";
-  i = accumulate_h(b,e,int(0),std::plus<int>());
+  i = hierarchical::accumulate(b,e,int(0),std::plus<int>());
   cout << "sum (hier) = " << i << "\n";
   
 

@@ -74,7 +74,7 @@ int main() {
   fill(a, a+N);
 
   typedef std::vector<float> vf;
-  typedef segmented_iterator<std::vector<vf>::iterator, vf::iterator> segit;
+  typedef hierarchical::segmented_iterator<std::vector<vf>::iterator, vf::iterator> segit;
   std::vector<vf> vv(nchunks);
   for(vf& v : vv) {
     v.resize(chunk);

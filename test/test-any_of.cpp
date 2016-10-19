@@ -13,7 +13,8 @@
 int main() {
   using namespace std;
 
-  typedef segmented_iterator<vector<vector<int> >::iterator, vector<int>::iterator> segit;
+  typedef hierarchical::segmented_iterator<vector<vector<int> >::iterator,
+					   vector<int>::iterator> segit;
 
   vector<vector<int> > vv(2);
   vv[0] = {1,2,3};
@@ -32,15 +33,15 @@ int main() {
   int i = 0;
   auto greater_3 = [](int i) { return i > 3; };
   
-  bool any_greater_3   = std::any_of(b,e,greater_3);
-  bool any_greater_3_h = any_of_h   (b,e,greater_3);
+  bool any_greater_3   = std         ::any_of(b,e,greater_3);
+  bool any_greater_3_h = hierarchical::any_of(b,e,greater_3);
 
   cout << "any_of > 3 (std)   = " <<  any_greater_3 << "\n";
   cout << "any_of > 3 (hier)  = " <<  any_greater_3_h << "\n";
 
   auto greater_7 = [](int i) { return i > 7; };
-  bool any_greater_7   = std::any_of(b,e,greater_7);
-  bool any_greater_7_h = any_of_h   (b,e,greater_7);
+  bool any_greater_7   = std         ::any_of(b,e,greater_7);
+  bool any_greater_7_h = hierarchical::any_of(b,e,greater_7);
 
   cout << "any_of > 7 (std)   = " <<  any_greater_7 << "\n";
   cout << "any_of > 7 (hier)  = " <<  any_greater_7_h << "\n";

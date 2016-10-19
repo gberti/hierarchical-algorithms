@@ -13,7 +13,8 @@
 int main() {
   using namespace std;
 
-  typedef segmented_iterator<vector<vector<int> >::iterator, vector<int>::iterator> segit;
+  typedef hierarchical::segmented_iterator<vector<vector<int> >::iterator,
+					   vector<int>::iterator> segit;
 
   vector<vector<int> > vv(2);
   vv[0] = {1,2,3};
@@ -34,7 +35,7 @@ int main() {
   std::for_each(b,e,f);
   cout << "sum (f) = " << i << "\n";
   i = 0;
-  for_each_h(b,e,f);
+  hierarchical::for_each(b,e,f);
   cout << "sum (h) = " << i << "\n";
   
  

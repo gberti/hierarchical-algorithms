@@ -14,7 +14,8 @@
 int main() {
   using namespace std;
 
-  typedef segmented_iterator<vector<vector<int> >::iterator, vector<int>::iterator> segit;
+  typedef hierarchical::segmented_iterator<vector<vector<int> >::iterator,
+					   vector<int>::iterator> segit;
 
   vector<vector<int> > vv(2);
   vv[0] = {1,2,3};
@@ -31,8 +32,8 @@ int main() {
   cout << "Hierarchical:\n";
   print_seg(b,e);
   int i = 0;
-  segit find_1   = std::find(b,e,1);
-  segit find_1_h = find_h(b,e,1);
+  segit find_1   = std         ::find(b,e,1);
+  segit find_1_h = hierarchical::find(b,e,1);
 
   cout << "*find_1 (std)  = " << *find_1   << "\n";
   cout << "*find_1 (hier) = " << *find_1_h << "\n";

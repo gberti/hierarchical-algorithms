@@ -2,13 +2,16 @@
 #define ACCUMULATE_HIERARCHICAL_GENERIC_H
 
 #include "nested-reduce.h"
-#include "accumulate-flat.h"
+
+#include <numeric>
 
 
+namespace hierarchical {
+  
 struct wrap_accumulate {
   template<typename Res, typename I, typename Op>
   Res operator()(Res init, I b, I e, Op op) const
-  { return accumulate_flat(b,e,init,op); }
+  { return std::accumulate(b,e,init,op); }
 
   
   template<typename Res>
@@ -20,9 +23,12 @@ struct wrap_accumulate {
 };
 
 template<class It, class T, class Op>
-T accumulate_h(It b, It e, T init, Op op)
+T accumulate(It b, It e, T init, Op op)
 {
   return nested_reduction(wrap_accumulate(), init, b,e, op);
 } 
+
+
+}
 
 #endif

@@ -3,10 +3,13 @@
 
 #include <iterator>
 
+namespace hierarchical {
+  
 struct false_type {};
 struct true_type  {};
 
 template<class I> struct is_segmented { typedef false_type res; };
 
+}
 
 #endif
