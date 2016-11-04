@@ -4,15 +4,16 @@
 #include "hierarchical-iterator-traits.h"
 #include <algorithm>
 
-/*! Implementation of a hierarchical version of std::find
-
+/*! Direct implementation of a hierarchical version of std::find. 
+    This header it is included for didactical purposes.
  */
+
 template<typename It, typename T>
 It hier_find(It b, It e, T t);
 
 // bottom case for flat sequence
 template<typename It, typename T>
-It hier_find(false_type, It b, It e, T t)
+  It hier_find(hierarchical::false_type, It b, It e, T t)
 {
   std::cout << "hier find flat.\n";
   return std::find(b,e,t);
@@ -20,7 +21,7 @@ It hier_find(false_type, It b, It e, T t)
 
 // nested case
 template<typename It, typename T>
-It hier_find(true_type, It b, It e, T t)
+It hier_find(hierarchical::true_type, It b, It e, T t)
 {
   std::cout << "hier find nested.\n";
   using std::begin;
@@ -70,7 +71,7 @@ template<typename It, typename T>
 It hier_find(It b, It e, T t)
 {
   std::cout << "nested find branch\n";
-  return hier_find(typename is_segmented<It>::res(),
+  return hier_find(typename hierarchical::is_segmented<It>::res(),
 		   b,e,t);
 } 
 

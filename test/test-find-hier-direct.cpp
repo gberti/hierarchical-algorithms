@@ -1,7 +1,12 @@
 
+/* Test of the direct implementation of hierarchical find.
+   This does not use the generic version for find-type algorithms
+   in nested-find.h
+ */
+
 #include "aux/print-hierarchical.h"
-// #include "hier-algorithms/find.h"
-#include "hier-algorithms/find-hierarchical.h"
+
+#include "hier-algorithms/direct/find-hierarchical.h"
 
 #include "iterators/segmented-iterator.h"
 
@@ -14,7 +19,7 @@
 int main() {
   using namespace std;
 
-  typedef segmented_iterator<vector<vector<int> >::iterator, vector<int>::iterator> segit;
+  typedef hierarchical::segmented_iterator<vector<vector<int> >::iterator, vector<int>::iterator> segit;
 
   vector<vector<int> > vv(2);
   vv[0] = {1,2,3};
