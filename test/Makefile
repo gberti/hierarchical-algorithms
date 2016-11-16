@@ -2,7 +2,7 @@
 
 export LANG=C
 DEBUG=debug
-CCFLAGS = -Wall -fdiagnostics-color=never
+CCFLAGS = -Wall -Wextra -fdiagnostics-color=never
 OPTFLAGS_BASE = -O3 --fast-math
 OPTFLAGS_VEC  = $(OPTFLAGS_BASE) -ftree-vectorize -fopt-info-vec-missed
 #OPTFLAGS_VEC  = $(OPTFLAGS_BASE) -ftree-vectorize -fopt-info-optimized
@@ -22,6 +22,7 @@ CCCFLAGS += $(IFLAGS)
 
 ifeq ($(DEBUG), debug)
 GENFLAGS = -g
+CCCFLAGS += -g
 OPTFLAGS = 
 endif
 
@@ -35,13 +36,15 @@ first: all
 
 all: exec
 
-exec: $(EXEC)
+exec: $(EXEC) 
 
 .SUFFIXES: .c .cpp .s .exe .o
 
 
 .cpp.exe:
 	$(CCC) $(CCFLAGS) $(CCCFLAGS)  $(OPTFLAGS) $<  -o $@
+
+test-segmented-iterator.exe: ../iterators/segmented-iterator.h
 
 
 .c.s:

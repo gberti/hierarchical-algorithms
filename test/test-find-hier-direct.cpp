@@ -35,7 +35,7 @@ int main() {
 
   cout << "Hierarchical:\n";
   print_seg(b,e);
-  int i = 0;
+
   segit find_1   = std::find(b,e,1);
   segit find_1_h = hier_find(b,e,1);
 

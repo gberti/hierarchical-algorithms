@@ -1,37 +1,14 @@
 
+#include "segmented-iterator.h"
+#include "aux/timer.h"
+
+
 #include <deque>
 #include <vector>
 #include <algorithm>
 
-//#include <time.h>
-//#include <sys/time.h>
-#include <chrono>
-#include <iostream>
 
-#include "segmented-iterator.h"
 
-inline double start_timer( )
-{
- 
-  /* struct timeval tim;
-  std::gettimeofday(&tim, NULL);
-  return ( tim.tv_sec+(tim.tv_usec/1000000.0) );
-  */
- using namespace std::chrono;
- time_point<high_resolution_clock> now = high_resolution_clock::now();
- typedef duration<double, std::ratio<1> > second_type;
- second_type secs(now.time_since_epoch());
- return secs.count();
-}
-  
-  
-inline double get_timer( double timer )
-{
-  return (start_timer() - timer);
-}
-
-inline void stop_timer(double & timer)
-{ timer = get_timer(timer); }
 
 
 template<class It>
@@ -83,95 +60,95 @@ int main() {
   segit e(vv.end(),  vv.end());
   fill(b,e);
   
-  double tc = start_timer();
+  double tc = aux::start_timer();
   float sc = 0;
   for(int i = 0; i < Niter; ++i) {
     // sc += sum_cstyle(&(*v.begin()), &(*v.end()));
     sc += sum_cstyle(a,a+N);
   }
-  stop_timer(tc);
+  aux::stop_timer(tc);
 
-  double tpc = start_timer();
+  double tpc = aux::start_timer();
   float pc = 1;
   for(int i = 0; i < Niter; ++i) {
     // sc += sum_cstyle(&(*v.begin()), &(*v.end()));
     pc *= prod_cstyle(a,a+N);
   }
-  stop_timer(tpc);
+  aux::stop_timer(tpc);
 
   
 
-  double tv = start_timer();
+  double tv = aux::start_timer();
   float sv = 0;
   for(int i = 0; i < Niter; ++i) {
     //sv += std::accumulate(v.begin(), v.end(), 0.0f);
     sv += sum(v);
     // dummyv(v);
   }
-  stop_timer(tv);
+  aux::stop_timer(tv);
 
-  double td = start_timer();
+  double td = aux::start_timer();
   float sd = 0;
   for(int i = 0; i < Niter; ++i) {
     // sd += std::accumulate(d.begin(), d.end(), 0.0f);
     sd += sum(d);
     dummyd(d);
   }
-  stop_timer(td);
+  aux::stop_timer(td);
 
-  double tvv_hier = start_timer();
+  double tvv_hier = aux::start_timer();
   float svv_hier = 0;
   for(int i = 0; i < Niter; ++i) {
     svv_hier += sumvv_hier(vv);
     // dummyd(d);
   }
-  stop_timer(tvv_hier);
+  aux::stop_timer(tvv_hier);
 
-  double tvv_flat = start_timer();
+  double tvv_flat = aux::start_timer();
   float svv_flat = 0;
   for(int i = 0; i < Niter; ++i) {
     // sd += std::accumulate(d.begin(), d.end(), 0.0f);
     svv_flat += sumvv_flat(vv);
     // dummyd(d);
   }
-  stop_timer(tvv_flat);
+  aux::stop_timer(tvv_flat);
   
-  double tpvv_flat = start_timer();
+  double tpvv_flat = aux::start_timer();
   float pvv_flat = 1.0;
   for(int i = 0; i < Niter; ++i) {
     // sd += std::accumulate(d.begin(), d.end(), 0.0f);
     pvv_flat *= prodvv_flat(vv);
     // dummyd(d);
   }
-  stop_timer(tpvv_flat);
+  aux::stop_timer(tpvv_flat);
 
 
   
-  double tvv_chunked = start_timer();
+  double tvv_chunked = aux::start_timer();
   float svv_chunked = 0;
   for(int i = 0; i < Niter; ++i) {
     svv_chunked += sumvv_chunked_hier(v, chunk*100);
     // dummyd(d);
   }
-  stop_timer(tvv_chunked);
+  aux::stop_timer(tvv_chunked);
 
-  double tpvv_hier = start_timer();
+  double tpvv_hier = aux::start_timer();
   float pvv_hier = 1;
   for(int i = 0; i < Niter; ++i) {
     pvv_hier *= prodvv_hier(vv);
     // dummyd(d);
   }
-  stop_timer(tpvv_hier);
+  aux::stop_timer(tpvv_hier);
 
   
 
-  double tpvv_chunked = start_timer();
+  double tpvv_chunked = aux::start_timer();
   float pvv_chunked = 1;
   for(int i = 0; i < Niter; ++i) {
     pvv_chunked *= prodvv_chunked_hier(v, chunk*f);
     // dummyd(d);
   }
-  stop_timer(tpvv_chunked);
+  aux::stop_timer(tpvv_chunked);
 
   
 

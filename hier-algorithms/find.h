@@ -49,7 +49,8 @@ struct wrap_find {
   static bool complete(find_result<It>  f) { return f.complete(); }
   
   template<typename I, typename T>
-  find_result<I> operator()(state_type init, I b, I e, T t) const
+  find_result<I> operator()(state_type,  //init
+			    I b, I e, T t) const
   {
     I found = std::find(b,e,t);
     return find_result<I>(found,e);

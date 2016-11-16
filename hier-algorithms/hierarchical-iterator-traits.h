@@ -1,7 +1,7 @@
 #ifndef HIERARCHICAL_ITERATOR_TRAITS_H
 #define HIERARCHICAL_ITERATOR_TRAITS_H
 
-#include <iterator>
+// #include <iterator>
 
 namespace hierarchical {
   

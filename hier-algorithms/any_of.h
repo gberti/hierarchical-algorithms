@@ -18,7 +18,7 @@ struct wrap_any_of {
   struct result_type {
     state_type  st;   // result of any_of(b,e, p)
     result_type(bool r) : st(r) {}
-    result_type(It b, It e) {}
+    result_type(It , It ) {}
     
     state_type state() const { return st; }
     // if any_of(b1,e1,p) returns true for a subrange [b1,el) \subset [b,e)
@@ -27,7 +27,9 @@ struct wrap_any_of {
     bool result()   const { return st.found; }
 
     template<class Minor, class Major>
-    void update(result_type<Minor> res_minor, Major seg, Major segend) 
+    void update(result_type<Minor>  res_minor,
+		Major,              // seg,
+		Major)              // segend 
     {
       st = res_minor.state();
     }
@@ -41,7 +43,8 @@ struct wrap_any_of {
   static bool complete(result_type<It> r) { return r.complete(); }
   
   template<typename I, typename P>
-  result_type<I> operator()(state_type init, I b, I e, P p) const
+  result_type<I> operator()(state_type, // init
+			    I b, I e, P p) const
   {
     return result_type<I>(std::any_of(b,e,p));
   }

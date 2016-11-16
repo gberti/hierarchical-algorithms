@@ -2,6 +2,8 @@
 #define ACCUMULATE_HIERARCHICAL_H
 
 #include "hierarchical-iterator-traits.h"
+
+#include <iterator>
 #include <numeric>
 
 /* Direct implementation of hierarchical accumulate.

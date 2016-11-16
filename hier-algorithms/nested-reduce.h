@@ -2,6 +2,7 @@
 #define NESTED_REDUCE_ALGORITHMS_H
 
 #include "hierarchical-iterator-traits.h"
+#include <iterator>
 
 namespace hierarchical {
   

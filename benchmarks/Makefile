@@ -28,7 +28,7 @@ HIER_ROOT = ..
 IFLAGS = -I$(HIER_ROOT) -I$(HIER_ROOT)/hier-algorithms -I$(HIER_ROOT)/iterators
 CCCFLAGS += $(IFLAGS)
 
-all: bench-accumulate.exe
+all: bench-accumulate.exe bench-binarysearch.exe
 
 .SUFFIXES: .c .cpp .s .exe .o
 
@@ -38,6 +38,8 @@ bench-accumulate.exe: bench-accumulate.o dummy.o sum-cstyle.o sumv.o sumd.o sumv
 
 bench-accumulate-vector-vs-deque.o: bench-accumulate-vector-vs-deque.cpp
 	$(CCC) -c -v $(CCFLAGS) $(CCCFLAGS) $(OPTFLAGS_BASE) $<
+
+bench-binarysearch.exe: ../iterators/segmented-iterator.h
 
 .cpp.exe:
 	$(CCC) $(CCFLAGS) $(CCCFLAGS)  $(OPTFLAGS) $<  -o $@

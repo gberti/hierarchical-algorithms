@@ -30,7 +30,7 @@ int main() {
 
   cout << "Hierarchical:\n";
   print_seg(b,e);
-  int i = 0;
+
   auto greater_3 = [](int i) { return i > 3; };
   
   bool any_greater_3   = std         ::any_of(b,e,greater_3);
