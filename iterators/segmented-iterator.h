@@ -16,14 +16,17 @@ namespace std {
   /*! Overload of std::advance
 
   \note This code currently overloads advance and distance in namespace std.
-  This is brittle as it relies on the sequence of includes 
+   While this is not allowed by the standard, it seems to work with g++ 5.4.0.
+   It is however brittle as it relies on the sequence of includes 
   (header segmented-iterator.h must come before any use of std::advance and std::distance in a header), i.e. the overloads must be found in phase 1 of two-phase-lookup.
   
   A better solution would be to define them in the hierarchical-namespace 
   and find them in ADL (phase 2). 
   However, the standard algorithms currently do not support ADL for distance and advance,
   as they explicitely call std::advance and std::distance.
-
+  So this "solution" is offered temporarily to have a quick and dirty way 
+  to compare the performance of the custom vs. the standard implementations 
+  of advance and distance. 
    */
   template<class S, class L>
   typename iterator_traits<hierarchical::segmented_iterator<S,L,0> >::difference_type

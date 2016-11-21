@@ -9,7 +9,7 @@
   (c) flat (vector)
   (d) flat (deque)
 
-  \note This code currently relies on overloading advance and distance in namespace std.
+  \note This code currently relies on overloading advance and distance in namespace std, see the comments in segmented-iterator.h
   This is brittle as it relies on the sequence of includes 
   (header segmented-iterator.h must come before any use of std::advance and std::distance in a header)
  */
